@@ -33,6 +33,7 @@ Schedule::call(function () {
         }
     }
 })
+    ->name('xml-product-import')
     ->hourly()
     ->withoutOverlapping()
     ->onFailure(function () {
