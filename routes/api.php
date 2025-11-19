@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ProductController;
 
 // Public routes
 Route::prefix('auth')->group(function () {
@@ -18,7 +19,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Admin only routes
     Route::middleware('role:admin')->prefix('admin')->group(function () {
-        // Admin routes will be added here
+        Route::apiResource('products', ProductController::class);
     });
 
     // Store only routes
