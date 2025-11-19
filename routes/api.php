@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\XmlSourceController;
 
 // Public routes
 Route::prefix('auth')->group(function () {
@@ -20,6 +21,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // Admin only routes
     Route::middleware('role:admin')->prefix('admin')->group(function () {
         Route::apiResource('products', ProductController::class);
+        Route::apiResource('xml-sources', XmlSourceController::class);
+        Route::post('xml-sources/{xmlSource}/import', [XmlSourceController::class, 'import']);
     });
 
     // Store only routes
